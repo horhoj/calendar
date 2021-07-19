@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Note } from '../Note';
+import { Todo } from '../../types/todo';
+import { useAppSelector } from '../../store/hooks';
+import { todoSelectors } from '../../store/todos';
 
 const Wrap = styled.div`
   border: 1px solid #999;
@@ -19,20 +22,14 @@ const Content = styled.div`
 `;
 
 export const Notes: React.FC = () => {
+  const todos: Todo[] = useAppSelector(todoSelectors.getTodos);
   return (
     <Wrap>
       <Content>
         <Title>NoteList</Title>
-        <Note data={{ title: 'День рождения собаки', budget: '300$' }} />
-        <Note
-          data={{ title: 'Пьянка у соседа', address: '309 кв.', time: '13:59' }}
-        />
-        <Note
-          data={{
-            title: 'Заметочка',
-            content: 'По дороге после  работы купить хлеба',
-          }}
-        />
+        {todos.map((note) => (
+          <Note data={note} key={note.id} />
+        ))}
       </Content>
     </Wrap>
   );

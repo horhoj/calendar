@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { TodoType } from '../../types/todo';
 import { NoteProps } from './types';
 
 const Wrap = styled.div`
@@ -24,23 +25,24 @@ export const Note: React.FC<NoteProps> = ({ data }) => {
   return (
     <Wrap>
       <Title>{data.title}</Title>
-      {data.budget ? (
+      {data.type === TodoType.HOLIDAY ? (
         <Field>
           <FieldTitle>Бюджет:</FieldTitle> {data.budget}
         </Field>
       ) : null}
 
-      {data.address ? (
-        <Field>
-          <FieldTitle>Адрес:</FieldTitle> {data.address}
-        </Field>
+      {data.type === TodoType.EVENT ? (
+        <>
+          <Field>
+            <FieldTitle>Адрес:</FieldTitle> {data.address}
+          </Field>
+          <Field>
+            <FieldTitle>Время:</FieldTitle> {data.time}
+          </Field>
+        </>
       ) : null}
-      {data.time ? (
-        <Field>
-          <FieldTitle>Время:</FieldTitle> {data.time}
-        </Field>
-      ) : null}
-      {data.content ? <Field>{data.content}</Field> : null}
+
+      {data.type === TodoType.NOTE ? <Field>{data.content}</Field> : null}
     </Wrap>
   );
 };
