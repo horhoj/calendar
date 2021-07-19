@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NoteProps } from '../Calendar/types';
+import { NoteProps } from './types';
 
 const Wrap = styled.div`
   border: 1px solid #999;

@@ -1,6 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { getDayColumns, getDays } from './helpers';
+import {
+  getDayOfWeekFirstDayOfMonth,
+  getDays,
+  getLastDayOfMonth,
+  LIST_OF_NAMES_OF_DAYS_OF_THE_WEEK,
+  LIST_OF_NAMES_OF_MONTH,
+} from './helpers';
+import { CalendarProps } from './types';
 
 const Wrap = styled.div`
   border: 1px solid #999;
@@ -33,29 +40,51 @@ const DayColumn = styled.div`
   ${dayCommonStyle}
 `;
 
-const Day = styled.div`
+const Day = styled.button`
+  cursor: pointer;
+  background-color: white;
+  outline-color: red;
+
+  &:active {
+    background-color: red;
+  }
   ${dayCommonStyle}
 `;
+
+const Empty = styled.div``;
 
 const MonthWrap = styled.div`
   text-align: center;
   font-weight: bold;
 `;
 
-export const Calendar: React.FC = () => {
-  const days: number[] = getDays();
+export const Calendar: React.FC<CalendarProps> = ({ date, setDate }) => {
+  const lastDayOfMonth = getLastDayOfMonth(date);
+  const currentDayOfWeek = getDayOfWeekFirstDayOfMonth(date);
+  const days: number[] = getDays(lastDayOfMonth);
+  const empty: number[] = getDays(currentDayOfWeek - 1);
 
-  const dayColumns = getDayColumns();
+  const handleDateClkCreator = (day: number) => () => {
+    const newDate = new Date(date.getFullYear(), date.getMonth(), day);
+    setDate(newDate);
+  };
 
   return (
     <Wrap>
-      <MonthWrap>Maй 2021</MonthWrap>
+      <MonthWrap>
+        {LIST_OF_NAMES_OF_MONTH[date.getMonth()]} {date.getFullYear()}
+      </MonthWrap>
       <DaysWrap>
-        {dayColumns.map((item) => (
+        {LIST_OF_NAMES_OF_DAYS_OF_THE_WEEK.map((item) => (
           <DayColumn key={item}>{item}</DayColumn>
         ))}
-        {days.map((item) => (
-          <Day key={item}>{item}</Day>
+        {empty.map((item) => (
+          <Empty key={item} />
+        ))}
+        {days.map((day) => (
+          <Day key={day} onClick={handleDateClkCreator(day)}>
+            {day}
+          </Day>
         ))}
       </DaysWrap>
     </Wrap>

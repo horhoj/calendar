@@ -10,5 +10,6 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-size: 1rem;
     line-height: 1.3rem;
+    //transition: all .3s ease;
   }
 `;

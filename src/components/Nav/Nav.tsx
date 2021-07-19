@@ -24,8 +24,18 @@ export const Nav: React.FC = () => {
     <Wrap>
       <Content>
         <Title>Navigation</Title>
-        <DateInput />
-        <Calendar />
+        <DateInput
+          date={new Date('2021-04-01')}
+          setDate={(newDate: Date) => {
+            console.log(newDate.toLocaleString());
+          }}
+        />
+        <Calendar
+          date={new Date('2021-04-01')}
+          setDate={(newDate: Date) => {
+            console.log(newDate.toLocaleString());
+          }}
+        />
       </Content>
     </Wrap>
   );
