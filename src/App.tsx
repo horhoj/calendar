@@ -10,7 +10,7 @@ const Container = styled.div`
   margin: 0 auto 0;
   padding: 10px;
   display: grid;
-  grid-template-columns: 300px 1fr;
+  grid-template-columns: 350px 1fr;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   min-height: 100vh;

@@ -6,17 +6,10 @@ export enum TodoType {
 
 interface Common {
   id: number;
-  date: Date;
+  date: string;
   title: string;
   type: TodoType;
 }
-
-// export interface TodoItem extends Common {
-//   budget?: string;
-//   address?: string;
-//   time?: string;
-//   content?: string;
-// }
 
 interface TodoHoliday extends Common {
   type: TodoType.HOLIDAY;

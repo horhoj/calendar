@@ -13,7 +13,7 @@ const Wrap = styled.div`
   border: 1px solid #999;
   padding: 10px;
   border-radius: 5px;
-  max-width: 300px;
+  max-width: 400px;
   margin: 0 auto;
   width: 100%;
 `;
@@ -22,8 +22,8 @@ const DaysWrap = styled.div`
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-column-gap: 2px;
-  grid-row-gap: 2px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
 `;
 
 const dayCommonStyle = css`
@@ -40,9 +40,9 @@ const DayColumn = styled.div`
   ${dayCommonStyle}
 `;
 
-const Day = styled.button`
+const Day = styled.button<{ isCurrent: boolean }>`
   cursor: pointer;
-  background-color: white;
+  background-color: ${({ isCurrent }) => (isCurrent ? 'red' : 'white')};
   outline-color: red;
 
   &:active {
@@ -82,7 +82,11 @@ export const Calendar: React.FC<CalendarProps> = ({ date, setDate }) => {
           <Empty key={item} />
         ))}
         {days.map((day) => (
-          <Day key={day} onClick={handleDateClkCreator(day)}>
+          <Day
+            key={day}
+            onClick={handleDateClkCreator(day)}
+            isCurrent={date.getDate() === day}
+          >
             {day}
           </Day>
         ))}

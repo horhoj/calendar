@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Calendar } from '../Calendar';
 import { DateInput } from '../DateInput';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { todoActions, todoSelectors } from '../../store/todos';
+import { getDateStr } from '../../helpers/getDateStr';
 
 const Wrap = styled.div`
   border: 1px solid #999;
@@ -20,22 +23,21 @@ const Content = styled.div`
 `;
 
 export const Nav: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const currentDate = useAppSelector(todoSelectors.getDate);
+  const currentDateValue = new Date(currentDate);
+
+  const handleChangeDate = (newDate: Date) => {
+    const dateStr = getDateStr(newDate);
+    dispatch(todoActions.setCurrentDate(dateStr));
+  };
+
   return (
     <Wrap>
       <Content>
         <Title>Navigation</Title>
-        <DateInput
-          date={new Date('2021-04-01')}
-          setDate={(newDate: Date) => {
-            console.log(newDate.toLocaleString());
-          }}
-        />
-        <Calendar
-          date={new Date('2021-04-01')}
-          setDate={(newDate: Date) => {
-            console.log(newDate.toLocaleString());
-          }}
-        />
+        <DateInput date={currentDateValue} setDate={handleChangeDate} />
+        <Calendar date={currentDateValue} setDate={handleChangeDate} />
       </Content>
     </Wrap>
   );

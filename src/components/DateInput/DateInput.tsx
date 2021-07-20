@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { getDateStr } from '../../helpers/getDateStr';
 import { DateInputProps } from './types';
-import { getDateStr } from './helpers';
 
 const Input = styled.input`
   border: 1px solid #999;

@@ -1,4 +1,4 @@
-import { getDateStr } from './helpers';
+import { getDateStr } from './getDateStr';
 
 describe('getDateStr', () => {
   it.each([

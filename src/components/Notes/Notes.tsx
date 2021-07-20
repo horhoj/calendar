@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Note } from '../Note';
 import { Todo } from '../../types/todo';
-import { useAppSelector } from '../../store/hooks';
-import { todoSelectors } from '../../store/todos';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { todoActions, todoSelectors } from '../../store/todos';
+import { NoteDataEvent, NoteDataEventType } from '../Note/types';
 
 const Wrap = styled.div`
   border: 1px solid #999;
@@ -23,12 +24,25 @@ const Content = styled.div`
 
 export const Notes: React.FC = () => {
   const todos: Todo[] = useAppSelector(todoSelectors.getTodos);
+
+  const dispatch = useAppDispatch();
+
+  const handleNoteSendEvent = (event: NoteDataEvent) => {
+    if (event.type === NoteDataEventType.DELETE && confirm('Удалить?')) {
+      dispatch(todoActions.deleteTodo(event.id));
+      return;
+    }
+    if (event.type === NoteDataEventType.UPDATE) {
+      console.log(event.id, 'update');
+    }
+  };
+
   return (
     <Wrap>
       <Content>
         <Title>NoteList</Title>
         {todos.map((note) => (
-          <Note data={note} key={note.id} />
+          <Note data={note} key={note.id} sendEvent={handleNoteSendEvent} />
         ))}
       </Content>
     </Wrap>
