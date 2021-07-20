@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useHistory, generatePath } from 'react-router-dom';
 import { Note } from '../Note';
 import { Todo } from '../../types/todo';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { todoActions, todoSelectors } from '../../store/todos';
 import { NoteDataEvent, NoteDataEventType } from '../Note/types';
+import { todoListRoutes } from '../../routes';
 
 const Wrap = styled.div`
   border: 1px solid #999;
@@ -26,6 +28,7 @@ export const Notes: React.FC = () => {
   const todos: Todo[] = useAppSelector(todoSelectors.getTodos);
 
   const dispatch = useAppDispatch();
+  const history = useHistory();
 
   const handleNoteSendEvent = (event: NoteDataEvent) => {
     if (event.type === NoteDataEventType.DELETE && confirm('Удалить?')) {
@@ -33,14 +36,15 @@ export const Notes: React.FC = () => {
       return;
     }
     if (event.type === NoteDataEventType.UPDATE) {
-      console.log(event.id, 'update');
+      const path = generatePath(todoListRoutes.EDIT, { id: event.id });
+      history.push(path);
     }
   };
 
   return (
     <Wrap>
       <Content>
-        <Title>NoteList</Title>
+        <Title>Список заметок</Title>
         {todos.map((note) => (
           <Note data={note} key={note.id} sendEvent={handleNoteSendEvent} />
         ))}

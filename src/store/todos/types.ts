@@ -1,8 +1,7 @@
 import { Todo } from '../../types/todo';
 
 export interface TodosState {
-  todos: TodoList;
+  todos: Todo[];
   currentDate: string;
+  inc: number;
 }
-
-export type TodoList = Todo[];

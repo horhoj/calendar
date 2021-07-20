@@ -1,7 +1,7 @@
 export enum TodoType {
-  HOLIDAY = 'HOLIDAY',
-  EVENT = 'EVENT',
-  NOTE = 'NOTE',
+  HOLIDAY = 'Праздник',
+  EVENT = 'Событие',
+  NOTE = 'Заметка',
 }
 
 interface Common {
