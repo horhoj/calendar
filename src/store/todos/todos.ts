@@ -1,26 +1,27 @@
 import { Todo, TodoType } from '../../types/todo';
+import { getDateStr } from '../../helpers/getDateStr';
 
 export const todos: Todo[] = [
   {
-    title: 'День рождения собаки',
+    title: 'День рождения напарника',
     budget: '300$',
-    date: '2021-07-19',
+    date: getDateStr(new Date()),
     type: TodoType.HOLIDAY,
     id: 1,
   },
   {
-    title: 'Пьянка у соседа',
+    title: 'Вечеринка у соседа',
     address: '309 кв.',
     time: '13:59',
     type: TodoType.EVENT,
-    date: '2021-07-19',
+    date: getDateStr(new Date()),
     id: 2,
   },
   {
     title: 'Заметочка',
     content: 'По дороге после  работы купить хлеба',
     type: TodoType.NOTE,
-    date: '2021-07-19',
+    date: getDateStr(new Date()),
     id: 3,
   },
 ];

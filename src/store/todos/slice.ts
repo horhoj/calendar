@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Todo } from '../../types/todo';
+import { getDateStr } from '../../helpers/getDateStr';
 import { TodosState } from './types';
 import { todos } from './todos';
 
 export const initialState: TodosState = {
   todos: [...todos],
-  currentDate: '2021-07-19',
+  currentDate: getDateStr(new Date()),
   inc: 100,
 };
 

@@ -48,6 +48,7 @@ export const Notes: React.FC = () => {
         {todos.map((note) => (
           <Note data={note} key={note.id} sendEvent={handleNoteSendEvent} />
         ))}
+        {todos.length === 0 ? 'Нет заметок. Нажмите кнопку добавить' : null}
       </Content>
     </Wrap>
   );
