@@ -1,6 +1,6 @@
 import { getDayOfWeekFirstDayOfMonth, getLastDayOfMonth } from './helpers';
 
-describe('getCurrentDayOfWeek', () => {
+describe('getDayOfWeekFirstDayOfMonth', () => {
   it.each([
     [new Date('2021-07-01'), 4],
     [new Date('2021-07-03'), 4],
@@ -14,6 +14,7 @@ describe('getCurrentDayOfWeek', () => {
     [new Date('2021-02-12'), 1],
     [new Date('2021-02-28'), 1],
     [new Date('2021-02-01'), 1],
+    [new Date('2021-08-01'), 7],
   ])('should ', (date: Date, dayOfWeek: number) => {
     expect(getDayOfWeekFirstDayOfMonth(date)).toBe(dayOfWeek);
   });

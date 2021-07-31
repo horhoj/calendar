@@ -35,8 +35,8 @@ export const getDays = (numberOfDays: number): number[] => {
 
 export const getDayOfWeekFirstDayOfMonth = (date: Date): number => {
   const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-
-  return firstDayOfMonth.getDay();
+  const dayOfWeek = firstDayOfMonth.getDay();
+  return dayOfWeek === 0 ? 7 : dayOfWeek;
 };
 
 export const getLastDayOfMonth = (date: Date): number => {
