@@ -9,92 +9,6 @@ import { todoListRoutes } from '../../routes';
 import { GetDefaultValuesConfig, TodoFormProps, TodoFormSchema } from './types';
 import { getDefaultValues, getFormTitle } from './helpers';
 
-const Wrap = styled.div`
-  border-radius: 5px;
-  border: 1px solid #999;
-  padding: 10px;
-  max-width: 400px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-const Container = styled.div`
-  display: grid;
-  grid-row-gap: 10px;
-`;
-
-const FormTitle = styled.div`
-  font-weight: bold;
-`;
-
-const Form = styled.form`
-  display: grid;
-  grid-row-gap: 10px;
-`;
-
-const CurrentId = styled.div``;
-
-const CurrentDate = styled.div``;
-
-const FormControlButtonsWrap = styled.div`
-  margin-top: 10px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
-  @media (max-width: 400px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-const Button = styled.button`
-  border: none;
-  border-radius: 3px;
-  background-color: #999;
-  color: #fff;
-  padding: 10px;
-  cursor: pointer;
-  &:active {
-    opacity: 0.5;
-  }
-`;
-
-const Input = styled.input`
-  border: none;
-  padding: 15px;
-  background-color: #ddd;
-  border-radius: 3px;
-`;
-
-const Select = styled.select`
-  border: none;
-  padding: 15px;
-  background-color: #ddd;
-  border-radius: 3px;
-`;
-
-const Option = styled.option`
-  border: none;
-  padding: 15px;
-  background-color: #ddd;
-  border-radius: 3px;
-`;
-
-const Label = styled.div`
-  font-size: 0.75rem;
-`;
-
-const Box = styled.div`
-  width: 100%;
-  grid-row-gap: 2px;
-  display: grid;
-`;
-
-const Errors = styled.div`
-  color: red;
-  font-size: 0.75rem;
-`;
-
 export const TodoForm: React.FC<TodoFormProps> = ({ id, currentDate }) => {
   const [formValues, setFormValues] = useState<Todo>(
     getDefaultValues({
@@ -213,3 +127,89 @@ export const TodoForm: React.FC<TodoFormProps> = ({ id, currentDate }) => {
     </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  border-radius: 5px;
+  border: 1px solid #999;
+  padding: 10px;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+`;
+
+const Container = styled.div`
+  display: grid;
+  grid-row-gap: 10px;
+`;
+
+const FormTitle = styled.div`
+  font-weight: bold;
+`;
+
+const Form = styled.form`
+  display: grid;
+  grid-row-gap: 10px;
+`;
+
+const CurrentId = styled.div``;
+
+const CurrentDate = styled.div``;
+
+const FormControlButtonsWrap = styled.div`
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const Button = styled.button`
+  border: none;
+  border-radius: 3px;
+  background-color: #999;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  &:active {
+    opacity: 0.5;
+  }
+`;
+
+const Input = styled.input`
+  border: none;
+  padding: 15px;
+  background-color: #ddd;
+  border-radius: 3px;
+`;
+
+const Select = styled.select`
+  border: none;
+  padding: 15px;
+  background-color: #ddd;
+  border-radius: 3px;
+`;
+
+const Option = styled.option`
+  border: none;
+  padding: 15px;
+  background-color: #ddd;
+  border-radius: 3px;
+`;
+
+const Label = styled.div`
+  font-size: 0.75rem;
+`;
+
+const Box = styled.div`
+  width: 100%;
+  grid-row-gap: 2px;
+  display: grid;
+`;
+
+const Errors = styled.div`
+  color: red;
+  font-size: 0.75rem;
+`;

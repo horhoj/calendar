@@ -5,12 +5,6 @@ import { TodoForm } from '../../components/TodoForm';
 import { useAppSelector } from '../../store/hooks';
 import { todoSelectors } from '../../store/todos';
 
-const Wrap = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-`;
-
 export const NotePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const currentDate = useAppSelector<string>(todoSelectors.getDate);
@@ -20,3 +14,9 @@ export const NotePage: React.FC = () => {
     </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+`;

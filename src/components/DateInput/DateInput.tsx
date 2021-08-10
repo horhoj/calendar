@@ -3,14 +3,6 @@ import styled from 'styled-components';
 import { getDateStr } from '../../helpers/getDateStr';
 import { DateInputProps } from './types';
 
-const Input = styled.input`
-  border: 1px solid #999;
-  border-radius: 5px;
-  padding: 10px;
-  max-width: 300px;
-  margin: 0 auto;
-`;
-
 export const DateInput: React.FC<DateInputProps> = ({ date, setDate }) => {
   const dateValue = getDateStr(date);
 
@@ -21,3 +13,11 @@ export const DateInput: React.FC<DateInputProps> = ({ date, setDate }) => {
 
   return <Input type="date" value={dateValue} onChange={handleChangeDate} />;
 };
+
+const Input = styled.input`
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+  max-width: 300px;
+  margin: 0 auto;
+`;

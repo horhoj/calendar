@@ -8,22 +8,6 @@ import { todoActions, todoSelectors } from '../../store/todos';
 import { NoteDataEvent, NoteDataEventType } from '../Note/types';
 import { todoListRoutes } from '../../routes';
 
-const Wrap = styled.div`
-  border: 1px solid #999;
-  border-radius: 5px;
-  padding: 10px;
-`;
-
-const Title = styled.div`
-  font-weight: bold;
-  text-align: center;
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-row-gap: 10px;
-`;
-
 export const Notes: React.FC = () => {
   const todos: Todo[] = useAppSelector(todoSelectors.getTodos);
 
@@ -53,3 +37,19 @@ export const Notes: React.FC = () => {
     </Wrap>
   );
 };
+
+const Wrap = styled.div`
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 10px;
+`;
+
+const Title = styled.div`
+  font-weight: bold;
+  text-align: center;
+`;
+
+const Content = styled.div`
+  display: grid;
+  grid-row-gap: 10px;
+`;

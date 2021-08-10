@@ -8,6 +8,34 @@ import { todoActions, todoSelectors } from '../../store/todos';
 import { getDateStr } from '../../helpers/getDateStr';
 import { todoListRoutes } from '../../routes';
 
+export const Nav: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const currentDate = useAppSelector(todoSelectors.getDate);
+  const currentDateValue = new Date(currentDate);
+  const history = useHistory();
+
+  const handleAddBtnClk = () => {
+    const path = generatePath(todoListRoutes.ADD);
+    history.push(path);
+  };
+
+  const handleChangeDate = (newDate: Date) => {
+    const dateStr = getDateStr(newDate);
+    dispatch(todoActions.setCurrentDate(dateStr));
+  };
+
+  return (
+    <Wrap>
+      <Content>
+        <Title>Навигация</Title>
+        <DateInput date={currentDateValue} setDate={handleChangeDate} />
+        <Calendar date={currentDateValue} setDate={handleChangeDate} />
+        <AddBtn onClick={handleAddBtnClk}>Добавить</AddBtn>
+      </Content>
+    </Wrap>
+  );
+};
+
 const Wrap = styled.div`
   border: 1px solid #999;
   padding: 10px;
@@ -38,31 +66,3 @@ const AddBtn = styled.button`
     opacity: 0.6;
   }
 `;
-
-export const Nav: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const currentDate = useAppSelector(todoSelectors.getDate);
-  const currentDateValue = new Date(currentDate);
-  const history = useHistory();
-
-  const handleAddBtnClk = () => {
-    const path = generatePath(todoListRoutes.ADD);
-    history.push(path);
-  };
-
-  const handleChangeDate = (newDate: Date) => {
-    const dateStr = getDateStr(newDate);
-    dispatch(todoActions.setCurrentDate(dateStr));
-  };
-
-  return (
-    <Wrap>
-      <Content>
-        <Title>Навигация</Title>
-        <DateInput date={currentDateValue} setDate={handleChangeDate} />
-        <Calendar date={currentDateValue} setDate={handleChangeDate} />
-        <AddBtn onClick={handleAddBtnClk}>Добавить</AddBtn>
-      </Content>
-    </Wrap>
-  );
-};

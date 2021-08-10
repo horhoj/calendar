@@ -3,6 +3,44 @@ import styled, { css } from 'styled-components';
 import { TodoType } from '../../types/todo';
 import { NoteDataEventType, NoteProps } from './types';
 
+export const Note: React.FC<NoteProps> = ({ data, sendEvent }) => {
+  const handleActionBtnCreator = (type: NoteDataEventType) => () => {
+    sendEvent({ id: data.id, type });
+  };
+
+  return (
+    <Wrap>
+      <ActionWrap>
+        <UpdateBtn onClick={handleActionBtnCreator(NoteDataEventType.UPDATE)}>
+          E
+        </UpdateBtn>
+        <DeleteBtn onClick={handleActionBtnCreator(NoteDataEventType.DELETE)}>
+          D
+        </DeleteBtn>
+      </ActionWrap>
+      <Title>{data.title}</Title>
+      {data.type === TodoType.HOLIDAY ? (
+        <Field>
+          <FieldTitle>Бюджет:</FieldTitle> {data.budget}
+        </Field>
+      ) : null}
+
+      {data.type === TodoType.EVENT ? (
+        <>
+          <Field>
+            <FieldTitle>Адрес:</FieldTitle> {data.address}
+          </Field>
+          <Field>
+            <FieldTitle>Время:</FieldTitle> {data.time}
+          </Field>
+        </>
+      ) : null}
+
+      {data.type === TodoType.NOTE ? <Field>{data.content}</Field> : null}
+    </Wrap>
+  );
+};
+
 const Title = styled.div`
   font-weight: bold;
   color: dodgerblue;
@@ -61,41 +99,3 @@ const Wrap = styled.div`
     }
   }
 `;
-
-export const Note: React.FC<NoteProps> = ({ data, sendEvent }) => {
-  const handleActionBtnCreator = (type: NoteDataEventType) => () => {
-    sendEvent({ id: data.id, type });
-  };
-
-  return (
-    <Wrap>
-      <ActionWrap>
-        <UpdateBtn onClick={handleActionBtnCreator(NoteDataEventType.UPDATE)}>
-          E
-        </UpdateBtn>
-        <DeleteBtn onClick={handleActionBtnCreator(NoteDataEventType.DELETE)}>
-          D
-        </DeleteBtn>
-      </ActionWrap>
-      <Title>{data.title}</Title>
-      {data.type === TodoType.HOLIDAY ? (
-        <Field>
-          <FieldTitle>Бюджет:</FieldTitle> {data.budget}
-        </Field>
-      ) : null}
-
-      {data.type === TodoType.EVENT ? (
-        <>
-          <Field>
-            <FieldTitle>Адрес:</FieldTitle> {data.address}
-          </Field>
-          <Field>
-            <FieldTitle>Время:</FieldTitle> {data.time}
-          </Field>
-        </>
-      ) : null}
-
-      {data.type === TodoType.NOTE ? <Field>{data.content}</Field> : null}
-    </Wrap>
-  );
-};

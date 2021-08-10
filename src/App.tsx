@@ -5,18 +5,6 @@ import { NotesPage } from './pages/NotesPage';
 import { NotePage } from './pages/NotePage';
 import { todoListRoutes } from './routes';
 
-const Container = styled.div`
-  max-width: 1024px;
-  min-width: 300px;
-  width: 100%;
-  margin: 0 auto 0;
-  padding: 10px;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-`;
-
 export const App: React.FC = () => {
   return (
     <Container>
@@ -39,3 +27,15 @@ export const App: React.FC = () => {
     </Container>
   );
 };
+
+const Container = styled.div`
+  max-width: 1024px;
+  min-width: 300px;
+  width: 100%;
+  margin: 0 auto 0;
+  padding: 10px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+`;

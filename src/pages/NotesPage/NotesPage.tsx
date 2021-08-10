@@ -3,6 +3,15 @@ import styled from 'styled-components';
 import { Nav } from '../../components/Nav';
 import { Notes } from '../../components/Notes';
 
+export const NotesPage: React.FC = () => {
+  return (
+    <Wrap>
+      <Nav />
+      <Notes />
+    </Wrap>
+  );
+};
+
 const Wrap = styled.div`
   display: grid;
   grid-template-columns: 350px 1fr;
@@ -14,12 +23,3 @@ const Wrap = styled.div`
     }
   } ;
 `;
-
-export const NotesPage: React.FC = () => {
-  return (
-    <Wrap>
-      <Nav />
-      <Notes />
-    </Wrap>
-  );
-};
