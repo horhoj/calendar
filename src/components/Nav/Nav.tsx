@@ -4,13 +4,13 @@ import { generatePath, useHistory } from 'react-router-dom';
 import { Calendar } from '../Calendar';
 import { DateInput } from '../DateInput';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { todoActions, todoSelectors } from '../../store/todos';
-import { getDateStr } from '../../helpers/getDateStr';
+import { todoListActions, todoListSelectors } from '../../store/todoList';
+import { getDateStr } from '../../helpers';
 import { todoListRoutes } from '../../routes';
 
 export const Nav: React.FC = () => {
   const dispatch = useAppDispatch();
-  const currentDate = useAppSelector(todoSelectors.getDate);
+  const currentDate = useAppSelector(todoListSelectors.getDate);
   const currentDateValue = new Date(currentDate);
   const history = useHistory();
 
@@ -21,7 +21,7 @@ export const Nav: React.FC = () => {
 
   const handleChangeDate = (newDate: Date) => {
     const dateStr = getDateStr(newDate);
-    dispatch(todoActions.setCurrentDate(dateStr));
+    dispatch(todoListActions.setCurrentDate(dateStr));
   };
 
   return (

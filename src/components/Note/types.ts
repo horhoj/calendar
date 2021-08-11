@@ -1,11 +1,11 @@
-import { Todo } from '../../types/todo';
+import { TodoItem } from '../../types/todo';
 
 export interface NoteProps {
   data: NoteData;
   sendEvent(event: NoteDataEvent): void;
 }
 
-export type NoteData = Todo;
+export type NoteData = TodoItem;
 
 export enum NoteDataEventType {
   DELETE = 'DELETE',

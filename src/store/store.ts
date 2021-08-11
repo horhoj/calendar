@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { todoReducer } from './todos';
+import { todoListReducer } from './todoList';
 
 export const store = configureStore({
   devTools: true,
-  reducer: { todo: todoReducer },
+  reducer: { todo: todoListReducer },
 });

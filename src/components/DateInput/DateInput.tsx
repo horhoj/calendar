@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { getDateStr } from '../../helpers/getDateStr';
+import { getDateStr } from '../../helpers';
 import { DateInputProps } from './types';
 
 export const DateInput: React.FC<DateInputProps> = ({ date, setDate }) => {

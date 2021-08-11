@@ -2,21 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 import { useHistory, generatePath } from 'react-router-dom';
 import { Note } from '../Note';
-import { Todo } from '../../types/todo';
+import { TodoItem } from '../../types/todo';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { todoActions, todoSelectors } from '../../store/todos';
+import { todoListActions, todoListSelectors } from '../../store/todoList';
 import { NoteDataEvent, NoteDataEventType } from '../Note/types';
 import { todoListRoutes } from '../../routes';
 
 export const Notes: React.FC = () => {
-  const todos: Todo[] = useAppSelector(todoSelectors.getTodos);
+  const todos: TodoItem[] = useAppSelector(
+    todoListSelectors.getTodoListForTheCurrentDate,
+  );
 
   const dispatch = useAppDispatch();
   const history = useHistory();
 
   const handleNoteSendEvent = (event: NoteDataEvent) => {
     if (event.type === NoteDataEventType.DELETE && confirm('Удалить?')) {
-      dispatch(todoActions.deleteTodo(event.id));
+      dispatch(todoListActions.deleteTodo(event.id));
       return;
     }
     if (event.type === NoteDataEventType.UPDATE) {

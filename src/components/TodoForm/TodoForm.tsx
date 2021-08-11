@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { generatePath, useHistory } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { todoActions, todoSelectors } from '../../store/todos';
-import { Todo, TodoType } from '../../types/todo';
+import { todoListActions, todoListSelectors } from '../../store/todoList';
+import { TodoItem, TodoType } from '../../types/todo';
 import { todoListRoutes } from '../../routes';
 import { GetDefaultValuesConfig, TodoFormProps, TodoFormSchema } from './types';
 import { getDefaultValues, getFormTitle } from './helpers';
 
 export const TodoForm: React.FC<TodoFormProps> = ({ id, currentDate }) => {
-  const [formValues, setFormValues] = useState<Todo>(
+  const [formValues, setFormValues] = useState<TodoItem>(
     getDefaultValues({
       id: 0, //0 для новой заметки
       title: '',
@@ -19,7 +19,7 @@ export const TodoForm: React.FC<TodoFormProps> = ({ id, currentDate }) => {
     }),
   );
   const dispatch = useAppDispatch();
-  const todo = useAppSelector(todoSelectors.getTodo(id));
+  const todo = useAppSelector(todoListSelectors.getTodoItem(id));
   const history = useHistory();
 
   useEffect(() => {
@@ -33,14 +33,14 @@ export const TodoForm: React.FC<TodoFormProps> = ({ id, currentDate }) => {
     history.push(path);
   };
 
-  const formik = useFormik<Todo>({
+  const formik = useFormik<TodoItem>({
     enableReinitialize: true,
     initialValues: formValues,
     onSubmit: (values) => {
       if (values.id === 0) {
-        dispatch(todoActions.addTodo(values));
+        dispatch(todoListActions.addTodo(values));
       } else {
-        dispatch(todoActions.updateTodo(values));
+        dispatch(todoListActions.updateTodo(values));
       }
       goTodoList();
     },

@@ -27,4 +27,4 @@ interface TodoNote extends Common {
   content: string;
 }
 
-export type Todo = TodoHoliday | TodoEvent | TodoNote;
+export type TodoItem = TodoHoliday | TodoEvent | TodoNote;

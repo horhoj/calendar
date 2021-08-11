@@ -1,10 +1,10 @@
-import { Todo, TodoType } from '../../types/todo';
+import { TodoItem, TodoType } from '../../types/todo';
 import { GetDefaultValuesConfig } from './types';
 
 export const getFormTitle = (id: number | null): string =>
   id && id > 0 ? `Редактируется заметка с ИД="${id}"` : 'Новая заметка';
 
-export const getDefaultValues = (config: GetDefaultValuesConfig): Todo => {
+export const getDefaultValues = (config: GetDefaultValuesConfig): TodoItem => {
   if (config.type === TodoType.HOLIDAY) {
     return {
       id: config.id,

@@ -1,45 +1,26 @@
-export const LIST_OF_NAMES_OF_DAYS_OF_THE_WEEK: string[] = [
-  'пн',
-  'вт',
-  'ср',
-  'чт',
-  'пт',
-  'сб',
-  'вс',
-];
+import { TodoItem } from '../../types/todo';
+import { getDateStr } from '../../helpers';
 
-export const LIST_OF_NAMES_OF_MONTH: string[] = [
-  'Январь',
-  'Февраль',
-  'Март',
-  'Апрель',
-  'Май',
-  'Июнь',
-  'Июль',
-  'Август',
-  'Сентябрь',
-  'Октябрь',
-  'Ноябрь',
-  'Декабрь',
-];
-
-export const getDays = (numberOfDays: number): number[] => {
-  const result = [];
-
-  for (let i = 1; i <= numberOfDays; i++) {
-    result.push(i);
-  }
-
-  return result;
+export const getTheNumberOfCasesByDate = (
+  day: number,
+  month: number,
+  year: number,
+  todoList: TodoItem[],
+): number => {
+  const date = new Date(year, month, day);
+  const dateStr = getDateStr(date);
+  return todoList.filter((item) => item.date === dateStr).length;
 };
 
-export const getDayOfWeekFirstDayOfMonth = (date: Date): number => {
-  const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
-  const dayOfWeek = firstDayOfMonth.getDay();
-  return dayOfWeek === 0 ? 7 : dayOfWeek;
-};
+export const checkIsToday = (
+  day: number,
+  month: number,
+  year: number,
+  currentDate: Date,
+): boolean => {
+  const date = new Date(year, month, day);
+  const dateStr = getDateStr(date);
+  const currentDateStr = getDateStr(currentDate);
 
-export const getLastDayOfMonth = (date: Date): number => {
-  const lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-  return lastDayOfMonth.getDate();
+  return currentDateStr === dateStr;
 };
